@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="icon" href="images/logo.png">
+        <meta name="keyword" content="2048">
+        <meta name="description" content="Minimalistic and lightweight 2048 game implementation.">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>2048</title>
+	</head>
+	<body>
+        <div class="content center full-height text-center">
+            <noscript>
+                <p>This application requires JavaScript to be enabled.</p>
+            </noscript>
+            <div class="game-board" id="game-board"></div>
+            <div></div>
+            <div class="control-button-panel">
+                <span class="square empty-button"></span>
+                <a href="javascript:makeMove(MOVE_UP);" class="square button">&uarr;</a>
+                <span class="square empty-button"></span>
+                <a href="javascript:makeMove(MOVE_LEFT);" class="square button">&larr;</a>
+                <span class="square empty-button"></span>
+                <a href="javascript:makeMove(MOVE_RIGHT);" class="square button">&rarr;</a>
+                <span class="square empty-button"></span>
+                <a href="javascript:makeMove(MOVE_DOWN);" class="square button">&darr;</a>
+                <span class="square empty-button"></span>
+            </div>
+            <p><sub>
+                Scores: <span id="scores">0</span>
+                &bull;
+                Best: <span id="best-scores">0</span>
+                &bull;
+                Moves: <span id="moves">0</span>
+                <br>
+                <a href="javascript:newGame(true);">New game</a>
+                &bull;
+                <a href="https://github.com/ivan-movchan/2048">Source code</a>
+                &bull;
+                <i>version 1.0</i>
+            </sub></p>
+        </div>
+        <script src="js/script.js" lang="JavaScript"></script>
+	</body>
+</html>
