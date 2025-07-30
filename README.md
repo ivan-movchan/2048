@@ -4,7 +4,7 @@
 
 # 2048
 
-[English](README.md) &bull; [Russian](README-RU.md)
+#### [English](README.md) &bull; [Russian](README-RU.md)
 
 </div>
 
