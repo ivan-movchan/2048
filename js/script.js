@@ -3,6 +3,8 @@ const VERSION = "v1.1";
 const BOARD_SIZE = 4;
 const PIECE_COUNT = 16;
 
+const REDRAW_DELAY = 200;
+
 const MOVE_UP = 0;
 const MOVE_DOWN = 2;
 const MOVE_LEFT = 1;
@@ -49,7 +51,7 @@ function initGameBoard() {
     };
 }
 
-function drawGameBoard() {
+function drawGameBoard(hidden = false) {
     if (document.getElementById("game-board").innerHTML === "") {
         for (let y = 0; y < BOARD_SIZE; y++) {
             for (let x = 0; x < BOARD_SIZE; x++) {
@@ -60,7 +62,24 @@ function drawGameBoard() {
     
     for (let y = 0; y < BOARD_SIZE; y++) {
         for (let x = 0; x < BOARD_SIZE; x++) {
-            document.getElementById(`piece${y}${x}`).innerText = (gameBoard[y][x] === 0 ? "" : gameBoard[y][x]);
+            var piece = document.getElementById(`piece${y}${x}`);
+            piece.style.backgroundColor = (gameBoard[y][x] !== 0 ? 'var(--piece-bg)' : 'var(--bg)');
+            
+            if (hidden) {
+                piece.style.color = 'transparent';
+            } else {
+                piece.innerHTML = (gameBoard[y][x] === 0 ? "&times;" : gameBoard[y][x]);
+                piece.style.backgroundColor = (gameBoard[y][x] !== 0 ? 'var(--piece-bg)' : 'var(--bg)');
+                piece.style.color = (gameBoard[y][x] !== 0 ? 'var(--piece-fg)' : 'var(--fg)');
+                
+                if (!piece.classList.contains("piece-empty") && gameBoard[y][x] === 0) {
+                    piece.classList.add("piece-empty");
+                };
+                
+                if (piece.classList.contains("piece-empty") && gameBoard[y][x] !== 0) {
+                    piece.classList.remove("piece-empty");
+                };
+            };
         };
     };
 }
@@ -127,7 +146,8 @@ function makeMove(move) {
             gameBoard[anyCell[0]][anyCell[1]] = newNumber();
         };
         
-        drawGameBoard();
+        drawGameBoard(true);
+        setTimeout(drawGameBoard, REDRAW_DELAY);
         updateData();
     };
 }
@@ -146,12 +166,19 @@ function onKeyUp(e) {
 }
 
 function newGame(clearData = false) {
+    if (clearData) {
+        drawGameBoard(true);
+    };
+    
     gameBoard = clearData ? null : gameBoard;
     scores = clearData ? 0 : scores;
     moves = clearData ? 0 : moves;
-    initGameBoard();
-    drawGameBoard();
-    updateData();
+    
+    setTimeout(() => {
+        initGameBoard();
+        drawGameBoard();
+        updateData();
+    }, REDRAW_DELAY);
 }
 
 newGame();
