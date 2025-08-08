@@ -1,6 +1,7 @@
 const VERSION = "v1.1";
 
 const BOARD_SIZE = 4;
+const EMPTY_PIECE_SIGN = "&times;";
 
 const REDRAW_DELAY = 200;
 
@@ -55,12 +56,16 @@ function drawGameBoard(hidden = false) {
         for (let x = 0; x < BOARD_SIZE; x++) {
             var piece = document.getElementById(`piece${y}${x}`);
             
+            if ((gameBoard[y][x] === parseInt(piece.innerHTML)) || ((gameBoard[y][x] === 0 && piece.innerHTML === EMPTY_PIECE_SIGN))) {
+                continue;
+            };
+            
             piece.style.backgroundColor = (gameBoard[y][x] !== 0 ? 'var(--piece-bg)' : 'var(--bg)');
             
             if (hidden) {
                 piece.style.color = 'transparent';
             } else {
-                piece.innerHTML = (gameBoard[y][x] === 0 ? "&times;" : gameBoard[y][x]);
+                piece.innerHTML = (gameBoard[y][x] === 0 ? EMPTY_PIECE_SIGN : gameBoard[y][x]);
                 piece.style.backgroundColor = (gameBoard[y][x] !== 0 ? 'var(--piece-bg)' : 'var(--bg)');
                 piece.style.color = (gameBoard[y][x] !== 0 ? 'var(--piece-fg)' : 'var(--fg)');
                 
