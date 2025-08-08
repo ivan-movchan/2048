@@ -1,12 +1,28 @@
 :root {
     --bg: #ffffff;
     --fg: #000000;
+    --btn-bg: #cccccc;
+    --btn-fg: #000000;
+    --btn-bg-hover: #bababa;
+    --btn-fg-hover: #000000;
+    --btn-bg-active: #aaaaaa;
+    --btn-fg-active: #000000;
+    --piece-bg: #cccccc;
+    --piece-fg: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #0f0f0f;
         --fg: #ffffff;
+        --btn-bg: #282828;
+        --btn-fg: #aaaaaa;
+        --btn-bg-hover: #404040;
+        --btn-fg-hover: #ffffff;
+        --btn-bg-active: #222222;
+        --btn-fg-active: #aaaaaa;
+        --piece-bg: #404040;
+        --piece-fg: #ffffff;
     }
 }
 
@@ -44,12 +60,6 @@ a {
     cursor: pointer;
 }
 
-hr {
-    border: none;
-    height: 2px;
-    background-color: var(--fg);
-}
-
 .content {
     gap: 16px 0px;
 }
@@ -85,12 +95,20 @@ hr {
     align-items: center;
     text-align: center;
     user-select: none;
-    border: 2px solid var(--fg);
+    border-radius: 10px;
 }
 
-.game-board-piece {
+.piece {
     width: 3em;
     height: 3em;
+    background-color: var(--piece-bg);
+    color: var(--piece-fg);
+    font-weight: bold;
+}
+
+.piece-empty {
+    background-color: var(--bg);
+    color: var(--fg);
 }
 
 .button, .empty-button {
@@ -100,9 +118,23 @@ hr {
 
 .button {
     cursor: pointer;
+    border: 2px solid transparent;
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+}
+
+.button:hover {
+    background-color: var(--btn-bg-hover);
+    color: var(--btn-fg-hover);
+}
+
+.button:active {
+    background-color: var(--btn-bg-active);
+    color: var(--btn-fg-active);
 }
 
 .empty-button {
+    background-color: transparent;
     border: 2px solid transparent;
 }
 
