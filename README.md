@@ -20,6 +20,10 @@ The game should run well in any modern web browser with JavaScript enabled. The 
 
 Game rules are the same as in original 2048 game, except one detail: when sliding tiles with the same number, they **immediately** merge from the opposite side (`2, 2, 4` will merge to `8`). This interesting feature (bug?) accidentally appeared in the draft version of the project.
 
+## Version history
+
+See [CHANGELOG.md](CHANGELOG.md) for details.
+
 ## Contributing
 
 Any feedback and contributions are welcome. Report bugs and suggest new ideas using ["Issues"](https://github.com/ivan-movchan/2048/issues) page or by contacting the developer privately. You are free to fork the repository, improve the project and send a pull request.
