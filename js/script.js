@@ -79,57 +79,20 @@ function updateData() {
 
 function produceMove(board, boardSize, scores, direction) {
     let newScores = scores;
+    let deltaX = (direction === MOVE_LEFT ? -1 : (direction === MOVE_RIGHT ? 1 : 0)), deltaY = (direction === MOVE_UP ? -1 : (direction === MOVE_DOWN ? 1 : 0));
+    let startX = (deltaX === -1 ? 1 : 0), startY = (deltaY === -1 ? 1 : 0);
+    let endX = (boardSize - (deltaX === 1 ? 1 : (deltaX === -1 ? 0 : 0))), endY = (boardSize - (deltaY === 1 ? 1 : (deltaY === -1 ? 0 : 0)));
     
-    if (direction === MOVE_UP) {
-        for (let x = 0; x < boardSize; x++) {
-            for (let y = 1; y < boardSize; y++) {
-                if (board[y-1][x] === 0 || board[y-1][x] === board[y][x]) {
-                    board[y-1][x] += board[y][x]
-                    if (board[y-1][x] === (board[y][x] * 2)) {
-                        newScores += board[y-1][x];
-                    };
-                    board[y][x] = 0;
-                };
+    for (let y = startY; y < endY; y++) {
+        for (let x = startX; x < endX; x++) {
+            let targetX = x + deltaX;
+            let targetY = y + deltaY;
+            if (board[targetY][targetX] === 0 || board[targetY][targetX] === board[y][x]) {
+                board[targetY][targetX] += board[y][x];
+                newScores += ((board[targetY][targetX] === (board[y][x] * 2)) ? board[targetY][targetX] : 0);
+                board[y][x] = 0;
             };
         };
-    } else if (direction === MOVE_DOWN) {
-        for (let x = 0; x < boardSize; x++) {
-            for (let y = 0; y < boardSize-1; y++) {
-                if (board[y+1][x] === 0 || board[y+1][x] === board[y][x]) {
-                    board[y+1][x] += board[y][x];
-                    if (board[y+1][x] === (board[y][x] * 2)) {
-                        newScores += board[y+1][x];
-                    };
-                    board[y][x] = 0;
-                };
-            };
-        };
-    } else if (direction === MOVE_LEFT) {
-        for (let y = 0; y < boardSize; y++) {
-            for (let x = 1; x < boardSize; x++) {
-                if (board[y][x-1] == 0 || board[y][x-1] === board[y][x]) {
-                    board[y][x-1] += board[y][x];
-                    if (board[y][x-1] === (board[y][x] * 2)) {
-                        newScores += board[y][x-1];
-                    };
-                    board[y][x] = 0;
-                };
-            };
-        };
-    } else if (direction === MOVE_RIGHT) {
-        for (let y = 0; y < boardSize; y++) {
-            for (let x = 0; x < boardSize-1; x++) {
-                if (board[y][x+1] === 0 || board[y][x+1] === board[y][x]) {
-                    board[y][x+1] += board[y][x];
-                    if (board[y][x+1] === (board[y][x] * 2)) {
-                        newScores += board[y][x+1];
-                    };
-                    board[y][x] = 0;
-                };
-            };
-        };
-    } else {
-        return scores;
     };
     
     return newScores;
