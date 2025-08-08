@@ -47,17 +47,17 @@ function initGameBoard() {
             gameBoard[y][x] = newNumber();
         };
     };
-    
-    document.getElementById("game-board").innerHTML = "";
-    
-    for (let y = 0; y < BOARD_SIZE; y++) {
-        for (let x = 0; x < BOARD_SIZE; x++) {
-            document.getElementById("game-board").innerHTML += `<span class="square game-board-piece" id="piece${y}${x}"></span>`;
-        };
-    };
 }
 
 function drawGameBoard() {
+    if (document.getElementById("game-board").innerHTML === "") {
+        for (let y = 0; y < BOARD_SIZE; y++) {
+            for (let x = 0; x < BOARD_SIZE; x++) {
+                document.getElementById("game-board").innerHTML += `<span class="square piece" id="piece${y}${x}"></span>`;
+            };
+        };
+    };
+    
     for (let y = 0; y < BOARD_SIZE; y++) {
         for (let x = 0; x < BOARD_SIZE; x++) {
             document.getElementById(`piece${y}${x}`).innerText = (gameBoard[y][x] === 0 ? "" : gameBoard[y][x]);
