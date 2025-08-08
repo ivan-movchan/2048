@@ -1,3 +1,5 @@
+const VERSION = "v1.1";
+
 const BOARD_SIZE = 4;
 const PIECE_COUNT = 16;
 
@@ -7,6 +9,8 @@ const MOVE_LEFT = 1;
 const MOVE_RIGHT = 3;
 
 const MOVE_KEYS = [ "ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "KeyW", "KeyA", "KeyS", "KeyD" ];
+
+document.getElementById("version").innerHTML = VERSION;
 
 let scores = (window.localStorage.getItem("scores") === null) ? 0 : parseInt(window.localStorage.getItem("scores"));
 let bestScores = (window.localStorage.getItem("bestScores") === null) ? 0 : parseInt(window.localStorage.getItem("bestScores"));
