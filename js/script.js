@@ -1,4 +1,4 @@
-const VERSION = "v1.1";
+const VERSION = "v1.11";
 
 const BOARD_SIZE = 4;
 const EMPTY_PIECE_SIGN = "&times;";
