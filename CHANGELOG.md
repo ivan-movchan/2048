@@ -2,6 +2,10 @@
 
 #### [English](CHANGELOG.md) &bull; [Русский](CHANGELOG-RU.md)
 
+### 1.11 *(2025-08-11)*
+
+- Improved and fixed `noscript` block that appears if JavaScript is disabled.
+
 ### 1.1 *(2025-08-08)*
 
 - New project logo.
@@ -18,4 +22,4 @@
 
 ### 1.0 *(2025-07-30)*
 
-The first public release of 2048.
+- The first public release of 2048.
